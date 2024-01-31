@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YemekSepeti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/7fb9870eff.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            min-height: 100vh;
+            background-color: #e9e4e4;
+        }
+
+        .logo {
+            margin-top: 3px;
+            margin-left: 108px;
+            height: 23px;
+        }
+
+        .navbar {
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            font-size: large;
+        }
+
+        .nav-list {
+            width: 33%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style-type: none;
+        }
+    
+        .nav-list a {
+            color: red;
+            list-style:none;
+            text-decoration: none;
+            
+        }
+
+        .login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50%;
+            min-width: 18%;
+            border: 1px solid #ea004b;
+            border-radius: 10px;
+            
+        }
+
+        .login a{
+            color: #ea004b;
+        }
+
+        .register {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50%;
+            width: 18%;
+            border: 1px solid #ea004b;
+            border-radius: 10px;
+            background-color: #ea004b;
+        }
+        
+        .lang {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 15%;
+        }
+
+        .register a {
+            color: #ffff;
+        }
+
+        .fa-chevron-down {
+            color: #ea004b;
+        }
+
+        .bag {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+        }
+
+        .bag a {
+            color: #ea004b;
+        }
+        
+        .login:hover {
+            background-color: #EA004B; 
+            
+            height: 53%;
+        }
+
+        .register:hover {
+            transform: scale(1.05);
+            height: 53%
+        }
+
+        .lang:hover {
+            border: 0px solid #ea004b;
+            border-radius: 10px;
+            background-color: #fadae4; 
+            transform: scale(1.05);
+            height: 55%;
+        }
+
+        .bag:hover {
+            border: 0px solid #ea004b;
+            border-radius: 50%;
+            background-color: #fadae4; 
+            transform: scale(1.05);
+            height: 65%;
+        }
+        footer {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            margin: 0 10px;
+            color: black;
+            text-decoration: none;
+            display: block; 
+            margin-bottom: 5px; 
+        }
+
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; 
+        }
+
+        .social-icons a {
+            color: black;
+            font-size: 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            align-items: center;
+            justify-content: flex-end;
+
+        }
+
+        .bordered {
+            border: 2px solid gray; 
+            border-radius: 50%; 
+            padding: 8px;
+        }
+        .logo {
+            width: 120px;
+            height: 30px;
+
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        
+        .footer-column {
+            flex: 1;
+            margin: 10px;
+            max-width: 200px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .social-icons {
+                justify-content: flex-start; 
+            }
+        }
+        
+        #yemeklogo {
+            margin-left: 20%; 
+        }
+
+        #fontlogo {
+            margin-right: 20%; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url "ysapp:anasayfa" %}"><img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOlzIiP3eMqqDIWe2xgsecaeo_ej4B4EXkGqke_HyIlu5KvfNNiL6tLvVlX6C_5TeNbA&usqp=CAU" alt="logo" class="logo"></a>
+            <ul class="nav-list">
+                {% if user.is_authenticated %}
+                <a href="{% url "cikisyap" %}" style="color:white;" class="btn btn-danger">Çıkış Yap</a>
+                {% else %}
+                <li class=""><a style=" " class="login btn btn-outline-danger" href="{% url "girisyap" %}">Giriş Yap</a></li>
+                <li class=""><a class="btn btn-danger" style="color: white;" href="{% url "kayitol" %}">Kayıt Ol</a></li>            
+                {% endif %}
+
+                <li class=""><a class="btn btn-dark" style="color: white;"href="{% url "ysapp:mahalle" %}">Mahalle</a></li>
+
+                <li class="lang" ><a href="#"><i class="fa-solid fa-globe"></i> TR <i class="fa-solid fa-chevron-down"></i></a></li>
+                <li class="bag" ><a  href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
+        </nav>
+    </header>
+
+    {% block content %}
+
+    {% endblock content %}
+
+    <footer>
+
+        <hr>
+
+        <div class="social-icons">
+            <div id="yemeklogo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOlzIiP3eMqqDIWe2xgsecaeo_ej4B4EXkGqke_HyIlu5KvfNNiL6tLvVlX6C_5TeNbA&usqp=CAU" alt="Logo" class="logo">
+            </div>
+            <div id="fontlogo">
+            <a href="#" target="_blank"><i class="fab fa-twitter bordered"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook bordered"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram bordered"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin-in bordered"></i></a>
+            </div>
+
+        </div>
+        
+        <hr>
+
+        <div class="footer-links">
+            <p class="footer-link">&copy; 2023 Yemeksepeti</p>
+            <div class="footer-column">
+            <a href="#" class="footer-link">Yardım Merkezi</a>
+            <a href="#" class="footer-link">Kullanım Koşulları</a>
+            <a href="#" class="footer-link">S.S.S ve İşlem Rehberi</a>
+            </div>
+            <div class="footer-column">
+            <a href="#" class="footer-link">Çerez Politikası</a>
+            <a href="#" class="footer-link">İletişim</a>
+            <a href="#" class="footer-link">İş Ortağımız Olun</a>
+            <a href="#" class="footer-link">Kurumsal Site</a>
+            </div>
+            <div class="footer-column">
+            <a href="#" class="footer-link">Aydınlatma Metni</a>
+            <a href="#" class="footer-link">Kişisel Verilerin Korunması ve İşlenmesi ve Gizlilik Politikası</a>
+            <a href="#" class="footer-link">Bilgi Toplumu Hizmetleri</a>
+            </div>
+        </div>
+
+
+        
+    </footer>
+    
+</body>
+<script>
+    $(document).ready(function(){
+	
+	
+        var textInput = $('#inputshop').val();
+        
+        $(".b-popup").hide();
+        
+        
+        if (localStorage.getItem('shoplistlocal')) {
+            $('.list').html(localStorage.getItem('shoplistlocal'));
+        }
+                
+        
+        $("#market .items").on("click",function(e){
+            $('.count').css({"display":"block"});
+            var itemvalue =  $(this).html();
+            $('.list').append('<li    class="item">'+$(this).html()+'</li>');
+            var shoplistlocal = $('.list').html();
+            localStorage.setItem('shoplistlocal', shoplistlocal);
+            return false;
+        });
+    
+                      
+        $(".list").on("click", ".item", function () {
+            $(this).remove();
+              $('.count').css({"display":"block"});
+              var itemlength = $(".app-body li").length;
+              $('.count').text(itemlength);
+              var shoplistlocal = $('.list').html();
+            localStorage.setItem('shoplistlocal', shoplistlocal);
+            return false;
+        });
+        
+                         
+         $(".closepopup").click(function(){
+         $(".b-popup").hide(200);
+        });
+        
+    
+        $(".openpopup").click(function(){
+            if ($('.item').is('li')) {
+            $(".b-popup").fadeIn(200);}
+        else {
+            $(".tooltipshop2").animate({marginLeft: "20px",easing: "easeout",opacity:"1"},300);
+            $(".tooltipshop2").delay(900).animate({opacity:"0",marginLeft: "-90px"});
+        }
+        });
+        $("#send").click(function(){
+            var itemname = $("#inputname").val();
+            var itememail = $("#inputemail").val();
+            var itemtel = $("#inputtel").val();
+            var shopbox = $(".app-body").html();
+            $.ajax({
+                url: "sendmessege.php",
+                type: "post",
+                dataType: "json",
+                  data: {
+                     "itemname": user_name,
+                     "itememail": user_email,
+                     "itemtel": user_comment,
+                     "shopbox": user_money
+                  },
+                 success: function() {
+                     alert("");
+                     
+                      }
+        });
+            });
+            
+            $('.closewindow').click(function(){
+                $('.app').fadeOut(500);
+            });	
+                $('#tray').click(function(){
+                $('.app').fadeIn(500);
+            });	
+            
+            
+        $('.items').click(function() {
+            var itemlength = $(".app-body li").length;
+            $('.count').text(itemlength);	
+        });
+            
+            
+        $(".openpopup2").click(function() {
+               window.localStorage.clear();
+            $('.list').children().remove();
+            $('.count').hide();
+            return false;
+        });		
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
